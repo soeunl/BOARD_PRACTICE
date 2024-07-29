@@ -20,5 +20,10 @@ public class BoardService {
         boardData.setPassword(hash);
         boardDataRepository.saveAndFlush(boardData);
     }
+
+    public RequestBoard findById(Long seq) {
+        BoardData boardData = boardDataRepository.findById(seq).get();
+        return new ModelMapper().map(boardData, RequestBoard.class);
+    }
 }
 

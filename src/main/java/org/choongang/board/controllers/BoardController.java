@@ -2,15 +2,16 @@ package org.choongang.board.controllers;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.choongang.board.entities.BoardData;
+import org.choongang.board.repositories.BoardDataRepository;
 import org.choongang.board.services.BoardService;
 import org.choongang.board.validator.BoardValidator;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/board")
@@ -19,20 +20,24 @@ public class BoardController {
 
     private final BoardValidator boardValidator;
     private final BoardService boardService;
+    private final BoardDataRepository boardDataRepository;
 
     @GetMapping("/") // 메인 화면
     public String boardList(@ModelAttribute RequestBoard form, Model model) {
 
-    model.addAttribute("addCss", new String[] {"list"});
+        List<BoardData> boardDataList = boardDataRepository.findAll();
+        model.addAttribute("boardDataList", boardDataList);
+        model.addAttribute("addCss", new String[] {"list"});
 
         return "board/list";
     }
 
-    @GetMapping("/view")
-    public String boardView(@ModelAttribute RequestBoard form) {
+    @GetMapping("/view/{seq}")
+    public String boardView(@RequestParam("seq") Long seq, Model model) {
+        RequestBoard requestBoard = boardService.findById(seq);
+        model.addAttribute("requestBoard", requestBoard);
+            return "board/view";
 
-
-        return "board/view";
     }
 
     @GetMapping("/create")

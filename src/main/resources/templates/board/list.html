@@ -11,19 +11,22 @@
             <th th:text="#{글번호}"></th>
             <th th:text="#{작성자}"></th>
             <th th:text="#{제목}"></th>
+            <th th:text="#{내용}"></th>
             <th th:text="#{작성_일시}"></th>
+            <th th:text="#{조회}"></th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+        <tr th:each="item : ${boardDataList}">
+            <td th:text="${item.getSeq()}"></td>
+            <td th:text="${item.getEmail()}"></td>
+            <td th:text="${item.getTitle()}"></td>
+            <td th:text="${item.getContent()}"></td>
+            <td th:text="${item.getCreatedAt().format(T(java.time.format.DateTimeFormatter).ofPattern('yyyy-MM-dd HH:mm'))}"></td>
+            <td><a th:href="@{|/board/view/?id=${item.getSeq()}|}">상세조회</a></td>
         </tr>
         </tbody>
     </table>
-
         <button type="button" th:text="#{글쓰기}"></button>
 </main>
 </html>

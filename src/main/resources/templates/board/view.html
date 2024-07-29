@@ -7,27 +7,15 @@
     <h2 th:text="#{게시글_조회}"></h2>
         <dl>
             <dt th:text="#{이메일}"></dt>
-            <dd>
-                <input type="text" name="email">
-            </dd>
+            <dd th:text="${requestBoard.email}"></dd>
         </dl>
         <dl>
             <dt th:text="#{제목}"></dt>
-            <dd>
-                <input type="text" name="title">
-            </dd>
-        </dl>
-        <dl>
-            <dt th:text="#{작성시간}"></dt>
-            <dd>
-                <input type="text" name="createdAt">
-            </dd>
+            <dd th:text="${requestBoard.title}"></dd>
         </dl>
         <dl>
             <dt th:text="#{작성글}"></dt>
-            <dd>
-                <textarea id="content" rows="10"></textarea>
-            </dd>
+            <dd th:text="${requestBoard.content}"></dd>
         </dl>
         <button type="button" th:text="#{수정하기}"></button>
         <button type="button" th:text="#{삭제하기}"></button>
