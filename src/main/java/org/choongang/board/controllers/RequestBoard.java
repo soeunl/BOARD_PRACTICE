@@ -1,22 +1,24 @@
 package org.choongang.board.controllers;
 
-import lombok.AllArgsConstructor;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class RequestBoard { // 여기는 커맨드 객체
 
-    private Long seq;
-
-    private String userName;
-
-    private String userPassword;
-
+    @NotBlank
+    @Email
+    private String email;
+    @NotBlank
+    @Size(min = 8)
+    private String password;
+    @NotBlank
+    private String confirmPassword;
+    @NotBlank
     private String title;
-
+    @NotBlank
     private String content;
 
 }

@@ -24,4 +24,6 @@ public abstract class BaseEntity {
     @LastModifiedDate // 수정 시 자동으로 설정되는 시간 필드
     @Column(insertable = false)
     private LocalDateTime modifiedAt;
+
+    private LocalDateTime deletedAt;
 }

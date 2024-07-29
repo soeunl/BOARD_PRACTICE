@@ -4,14 +4,14 @@
       layout:decorate="~{layouts/main}">
 
 <main layout:fragment="content">
-    <h1 th:text="#{게시글_목록}"></h1>
-
+    <h2 th:text="#{게시글_목록}"></h2>
     <table class="list-table">
         <thead>
         <tr>
+            <th th:text="#{글번호}"></th>
             <th th:text="#{작성자}"></th>
             <th th:text="#{제목}"></th>
-            <th th:text="#{작성_날짜}"></th>
+            <th th:text="#{작성_일시}"></th>
         </tr>
         </thead>
         <tbody>
@@ -19,11 +19,11 @@
             <td></td>
             <td></td>
             <td></td>
+            <td></td>
         </tr>
         </tbody>
     </table>
 
-        <button type="submit" th:text="#{작성하기}"></button>
-        <button type="reset" th:text="#{다시쓰기}"></button>
+        <button type="button" th:text="#{글쓰기}"></button>
 </main>
 </html>

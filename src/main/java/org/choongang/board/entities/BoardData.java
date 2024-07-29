@@ -16,16 +16,15 @@ public class BoardData extends BaseEntity {
     @Id @GeneratedValue
     private Long seq;
 
-    @Column(nullable = false)
-    private String userName;
+    @Column(length = 65, unique = true, nullable = false)
+    private String email;
 
-    @Column(nullable = false)
-    private String userPassword;
+    @Column(length = 65, nullable = false)
+    private String password;
 
     @Column(nullable = false)
     private String title;
 
-    @Lob
     @Column(nullable = false)
     private String content;
 }

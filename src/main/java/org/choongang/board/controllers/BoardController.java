@@ -1,7 +1,12 @@
 package org.choongang.board.controllers;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.choongang.board.services.BoardService;
+import org.choongang.board.validator.BoardValidator;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,12 +17,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequiredArgsConstructor
 public class BoardController {
 
-    @GetMapping("/list")
-    public String boardList() {
+    private final BoardValidator boardValidator;
+    private final BoardService boardService;
 
+    @GetMapping("/") // 메인 화면
+    public String boardList(@ModelAttribute RequestBoard form, Model model) {
 
+    model.addAttribute("addCss", new String[] {"list"});
 
         return "board/list";
+    }
+
+    @GetMapping("/view")
+    public String boardView(@ModelAttribute RequestBoard form) {
+
+
+        return "board/view";
     }
 
     @GetMapping("/create")
@@ -27,9 +42,18 @@ public class BoardController {
     }
 
     @PostMapping("/create")
-    public String createBoardPs() {
+    public String createBoardPs(@Valid RequestBoard form, Errors errors) {
 
-        return "redirect:/board/list";
+        boardValidator.validate(form, errors);
+
+        if (errors.hasErrors()) {
+
+            return "board/create";
+        }
+
+        boardService.save(form);
+
+        return "redirect:/board/";
     }
 
     @GetMapping("/modify")
@@ -39,8 +63,17 @@ public class BoardController {
     }
 
     @PostMapping("/modify")
-    public String modifyBoardPs() {
+    public String modifyBoardPs(@Valid RequestBoard form, Errors errors) {
 
-        return "redirect:/board/list";
+        boardValidator.validate(form, errors);
+
+        if (errors.hasErrors()) {
+
+            return "board/modify";
+        }
+
+        boardService.save(form);
+
+        return "redirect:/board/";
     }
 }

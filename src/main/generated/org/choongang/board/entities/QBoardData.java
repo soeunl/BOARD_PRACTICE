@@ -27,15 +27,18 @@ public class QBoardData extends EntityPathBase<BoardData> {
     public final DateTimePath<java.time.LocalDateTime> createdAt = _super.createdAt;
 
     //inherited
+    public final DateTimePath<java.time.LocalDateTime> deletedAt = _super.deletedAt;
+
+    public final StringPath email = createString("email");
+
+    //inherited
     public final DateTimePath<java.time.LocalDateTime> modifiedAt = _super.modifiedAt;
+
+    public final StringPath password = createString("password");
 
     public final NumberPath<Long> seq = createNumber("seq", Long.class);
 
     public final StringPath title = createString("title");
-
-    public final StringPath userName = createString("userName");
-
-    public final StringPath userPassword = createString("userPassword");
 
     public QBoardData(String variable) {
         super(BoardData.class, forVariable(variable));
