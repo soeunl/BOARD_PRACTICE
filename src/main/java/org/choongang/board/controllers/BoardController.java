@@ -1,45 +1,46 @@
 package org.choongang.board.controllers;
 
 import lombok.RequiredArgsConstructor;
-import org.choongang.board.service.BoardService;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.util.List;
 
 @Controller
 @RequestMapping("/board")
 @RequiredArgsConstructor
 public class BoardController {
 
-    private final BoardService boardService;
+    @GetMapping("/list")
+    public String boardList() {
 
-    @GetMapping("/")
-    public String boardIndex() {
 
-        return "board/index";
+
+        return "board/list";
     }
 
-    @GetMapping("/save")
-    public String saveForm() {
+    @GetMapping("/create")
+    public String createBoard(@ModelAttribute RequestBoard form) {
 
-        return "board/save";
+        return "board/create";
     }
 
-    @PostMapping("/save")
-    public String save(@ModelAttribute RequestBoard requestBoard) {
-        boardService.save(requestBoard);
-        return "board/index";
+    @PostMapping("/create")
+    public String createBoardPs() {
+
+        return "redirect:/board/list";
     }
 
-    @GetMapping("/")
-    public String boardList(Model model) {
-     List<RequestBoard> requestBoardList = boardService.findList();
-     model.addAttribute("boardList", requestBoardList);
-     return "board/list";
+    @GetMapping("/modify")
+    public String modifyBoard(@ModelAttribute RequestBoard form) {
+
+        return "board/modify";
+    }
+
+    @PostMapping("/modify")
+    public String modifyBoardPs() {
+
+        return "redirect:/board/list";
     }
 }

@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.choongang.board.controllers.RequestBoard;
 import org.choongang.global.entities.BaseEntity;
 
 @Data
@@ -29,15 +28,4 @@ public class BoardData extends BaseEntity {
     @Lob
     @Column(nullable = false)
     private String content;
-
-    public static BoardData saveBoardData(RequestBoard requestBoard) {
-        BoardData boardData = new BoardData();
-        boardData.setSeq(requestBoard.getSeq());
-        boardData.setUserName(requestBoard.getUserName());
-        boardData.setUserPassword(requestBoard.getUserPassword());
-        boardData.setTitle(requestBoard.getTitle());
-        boardData.setContent(requestBoard.getContent());
-        return boardData;
-
-    }
 }

@@ -3,12 +3,11 @@ package org.choongang.board.controllers;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.choongang.board.entities.BoardData;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class RequestBoard {
+public class RequestBoard { // 여기는 커맨드 객체
 
     private Long seq;
 
@@ -20,13 +19,4 @@ public class RequestBoard {
 
     private String content;
 
-    public static RequestBoard toRequestBoard(BoardData boardData) {
-        RequestBoard requestBoard = new RequestBoard();
-        requestBoard.setSeq(boardData.getSeq());
-        requestBoard.setUserName(boardData.getUserName());
-        requestBoard.setUserPassword(boardData.getUserPassword());
-        requestBoard.setTitle(boardData.getTitle());
-        requestBoard.setContent(boardData.getContent());
-        return requestBoard;
-    }
 }

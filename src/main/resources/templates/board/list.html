@@ -1,22 +1,29 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>list</title>
-</head>
-<body>
-<table>
-    <tr>
-        <th>id</th>
-        <th>title</th>
-        <th>writer</th>
-        <th>date</th>
-    </tr>
-    <tr th:each="board: ${boardList}">
-        <td th:text="${board.id}"></td>
-        <td><a th:href="@{|/board/${board.id}|}" th:text="${board.boardTitle}"></a></td>
-        <td><a th:href="@{/board/${board.id}}" th:text="${board.boardTitle}"></a></td>
-    </tr>
-</table>
-</body>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/main}">
+
+<main layout:fragment="content">
+    <h1 th:text="#{게시글_목록}"></h1>
+
+    <table class="list-table">
+        <thead>
+        <tr>
+            <th th:text="#{작성자}"></th>
+            <th th:text="#{제목}"></th>
+            <th th:text="#{작성_날짜}"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        </tbody>
+    </table>
+
+        <button type="submit" th:text="#{작성하기}"></button>
+        <button type="reset" th:text="#{다시쓰기}"></button>
+</main>
 </html>
